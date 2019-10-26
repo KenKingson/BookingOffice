@@ -27,10 +27,11 @@ namespace BookingOffice.Entities
         public string TimeZone { get; set; }
 
         public Flight() { }
-        public Flight(string from, string to, DateTime dateFrom, DateTime timeFrom, 
+        public Flight(Guid guid,string from, string to, DateTime dateFrom, DateTime timeFrom, 
             DateTime dateTo, DateTime timeTo, string aircraft, string timeZone)
         {
-            Id = new Guid();
+
+			Id = guid;
             From = from;
             To = to;
             DateFrom = dateFrom;

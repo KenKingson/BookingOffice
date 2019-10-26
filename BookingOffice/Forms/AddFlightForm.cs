@@ -24,7 +24,7 @@ namespace BookingOffice
             clearButton.Click += ClearButton_Click;
         }
 
-        private void ClearButton_Click(object sender, EventArgs e)
+		private void ClearButton_Click(object sender, EventArgs e)
         {
             Clear();
         }
@@ -34,7 +34,8 @@ namespace BookingOffice
             try
             {
                 var flight = new Flight(
-                    textBoxFrom.Text, 
+					Guid.NewGuid(),
+				    textBoxFrom.Text, 
                     textBoxTo.Text, 
                     dateFrom.Value, 
                     timeFrom.Value,
@@ -63,8 +64,8 @@ namespace BookingOffice
             textBoxTimeZone.Clear();
             dateFrom.Value = DateTime.Now;
             dateTo.Value = DateTime.Now;
-            timeFrom.Value = DateTime.Now;
-            timeTo.Value = DateTime.Now;
-        }
+            timeFrom.Value = DateTime.MinValue;
+			timeTo.Value = DateTime.MinValue;
+		}
     }
 }

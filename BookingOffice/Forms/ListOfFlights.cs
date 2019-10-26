@@ -1,4 +1,5 @@
 ﻿using BookingOffice.Constants;
+using BookingOffice.Entities;
 using BookingOffice.Utils;
 using System;
 using System.Collections.Generic;
@@ -30,14 +31,24 @@ namespace BookingOffice
             serviceMenuStrip.Items.Add(serviceMenuStripItem);
             serviceMenuStripItem.DropDownItems.Add(createFlightToolStripMenuItem);
             createFlightToolStripMenuItem.Click += CreateFlightToolStripMenuItem_Click;
-            button1.Click += Button1_Click;
-        }
+			this.dataGridViewFlights.KeyDown += DataGridViewFlights_KeyDown;
+		}
 
-        private void Button1_Click(object sender, EventArgs e)
-        {
-             
-        }
-
+		private void DataGridViewFlights_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.KeyData == Keys.Delete)
+			{
+				using (var context = new Context())
+					foreach (var record in dataGridViewFlights.SelectedRows)
+					{
+						var flight = (record as DataGridViewRow).DataBoundItem as Flight;
+						context.Flight.Attach(flight);
+						context.Flight.Remove(flight);
+						context.SaveChanges();
+					}
+			}
+		}
+		
         private void CreateFlightToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var addFlightForm = new AddFlightForm();
