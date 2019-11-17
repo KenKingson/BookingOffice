@@ -64,8 +64,8 @@ namespace BookingOffice
             textBoxTimeZone.Clear();
             dateFrom.Value = DateTime.Now;
             dateTo.Value = DateTime.Now;
-            timeFrom.Value = DateTime.MinValue;
-			timeTo.Value = DateTime.MinValue;
+            timeFrom.Value = DateTime.Now;
+			timeTo.Value = DateTime.Now;
 		}
     }
 }

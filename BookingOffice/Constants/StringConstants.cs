@@ -18,5 +18,7 @@ namespace BookingOffice.Constants
         public const string CreateFlightToolStripMenuItemName = "Добавить рейс";
         public const string AddNewFlightLabelName = "Введите параметры рейса";
         public const string AddNewFlightButtonName = "Добавить запись";
+		public const string UpdatePage = "Обновить";
+		public const string DeleteFlight = "Удалить";
     }
 }

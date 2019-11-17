@@ -28,46 +28,44 @@
         /// </summary>
         private void InitializeComponent()
         {
+			this.components = new System.ComponentModel.Container();
 			this.dataGridViewFlights = new System.Windows.Forms.DataGridView();
-			this.serviceMenuStrip = new System.Windows.Forms.MenuStrip();
+			this.contextDataGridServiceStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlights)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dataGridViewFlights
 			// 
+			this.dataGridViewFlights.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
 			this.dataGridViewFlights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataGridViewFlights.Cursor = System.Windows.Forms.Cursors.Hand;
+			this.dataGridViewFlights.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.dataGridViewFlights.Location = new System.Drawing.Point(0, 0);
 			this.dataGridViewFlights.Name = "dataGridViewFlights";
-			this.dataGridViewFlights.Size = new System.Drawing.Size(481, 397);
+			this.dataGridViewFlights.Size = new System.Drawing.Size(889, 443);
 			this.dataGridViewFlights.TabIndex = 0;
 			// 
-			// serviceMenuStrip
+			// contextMenuStrip1
 			// 
-			this.serviceMenuStrip.Location = new System.Drawing.Point(0, 0);
-			this.serviceMenuStrip.Name = "serviceMenuStrip";
-			this.serviceMenuStrip.Size = new System.Drawing.Size(600, 24);
-			this.serviceMenuStrip.TabIndex = 6;
-			this.serviceMenuStrip.Text = "menuStrip1";
+			this.contextDataGridServiceStrip.Name = "contextMenuStrip1";
+			this.contextDataGridServiceStrip.Size = new System.Drawing.Size(181, 26);
 			// 
 			// ListOfFlights
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(600, 440);
-			this.Controls.Add(this.serviceMenuStrip);
+			this.ClientSize = new System.Drawing.Size(889, 443);
 			this.Controls.Add(this.dataGridViewFlights);
-			this.MainMenuStrip = this.serviceMenuStrip;
 			this.Name = "ListOfFlights";
 			this.Text = "Список рейсов";
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewFlights)).EndInit();
 			this.ResumeLayout(false);
-			this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.DataGridView dataGridViewFlights;
-        private System.Windows.Forms.MenuStrip serviceMenuStrip;
-    }
+		private System.Windows.Forms.ContextMenuStrip contextDataGridServiceStrip;
+	}
 }
