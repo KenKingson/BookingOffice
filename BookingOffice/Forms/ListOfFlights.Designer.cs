@@ -40,15 +40,16 @@
 			this.dataGridViewFlights.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataGridViewFlights.Cursor = System.Windows.Forms.Cursors.Hand;
 			this.dataGridViewFlights.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.dataGridViewFlights.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
 			this.dataGridViewFlights.Location = new System.Drawing.Point(0, 0);
 			this.dataGridViewFlights.Name = "dataGridViewFlights";
 			this.dataGridViewFlights.Size = new System.Drawing.Size(889, 443);
 			this.dataGridViewFlights.TabIndex = 0;
 			// 
-			// contextMenuStrip1
+			// contextDataGridServiceStrip
 			// 
 			this.contextDataGridServiceStrip.Name = "contextMenuStrip1";
-			this.contextDataGridServiceStrip.Size = new System.Drawing.Size(181, 26);
+			this.contextDataGridServiceStrip.Size = new System.Drawing.Size(61, 4);
 			// 
 			// ListOfFlights
 			// 

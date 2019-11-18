@@ -17,11 +17,13 @@ namespace BookingOffice
 	public partial class ListOfFlights : Form
 	{
 		private BindingSource bindingSource = new BindingSource();
+		private bool isEditModeEnabled = false;
+		private Context context;
 
 		public ListOfFlights()
 		{
 			InitializeComponent();
-
+			context = new Context();
 			UpdatePage();
 			dataGridViewFlights.ReadOnly = true;
 			dataGridViewFlights.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -29,20 +31,46 @@ namespace BookingOffice
 			var createFlightToolStripMenuItem = new ToolStripMenuItem(StringConstants.CreateFlightToolStripMenuItemName);
 			createFlightToolStripMenuItem.Click += CreateFlightToolStripMenuItem_Click;
 			var updatePageMenuItem = new ToolStripMenuItem(StringConstants.UpdatePage);
-			updatePageMenuItem.Click += UpdatePage_Click;
 			var deleteFlightMenuItem = new ToolStripMenuItem(StringConstants.DeleteFlight);
-			deleteFlightMenuItem.Click += DeleteFlightMenuItem_Click;
+			var editMode = new ToolStripMenuItem(StringConstants.EditMode);
+			var saveChanges = new ToolStripMenuItem("Save changes");
+
 			contextDataGridServiceStrip.Items.AddRange(new[]
 			{
 				createFlightToolStripMenuItem,
 				updatePageMenuItem,
-				deleteFlightMenuItem
+				deleteFlightMenuItem,
+				editMode,
+				saveChanges
 			});
 
 			dataGridViewFlights.ContextMenuStrip = contextDataGridServiceStrip;
+			saveChanges.Click += SaveChanges_Click;
+			updatePageMenuItem.Click += UpdatePage_Click;
+			deleteFlightMenuItem.Click += DeleteFlightMenuItem_Click;
+			editMode.Click += EditMode_Click;
 			this.dataGridViewFlights.KeyDown += DataGridViewFlights_KeyDown;
 			this.dataGridViewFlights.DataError += DataGridViewFlights_DataError;
 			SetCustomNamesOfColumns();
+		}
+
+		private void SaveChanges_Click(object sender, EventArgs e)
+		{
+			context.SaveChanges();
+		}
+
+		private void EditMode_Click(object sender, EventArgs e)
+		{
+			if (isEditModeEnabled)
+			{
+				isEditModeEnabled = false;
+			}
+			else
+			{
+				isEditModeEnabled = true;
+			}
+			dataGridViewFlights.ReadOnly = !isEditModeEnabled;
+			dataGridViewFlights.Columns[0].ReadOnly = true;
 		}
 
 		private void DataGridViewFlights_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -89,17 +117,13 @@ namespace BookingOffice
 
 		private void DeleteRecords()
 		{
-			using (var context = new Context())
-			{
 				if (dataGridViewFlights?.SelectedRows.Count > 0)
 				{
-
 					foreach (var record in dataGridViewFlights?.SelectedRows)
 					{
 						var flight = (record as DataGridViewRow).DataBoundItem as Flight;
 						if (flight != null)
 						{
-
 							context.Flight.Attach(flight);
 							context.Flight.Remove(flight);
 							context.SaveChanges();
@@ -107,19 +131,15 @@ namespace BookingOffice
 					}
 					UpdatePage();
 				}
-			}
 		}
 
 		private void UpdatePage()
 		{
-			using (var context = new Context())
-			{
 				context.Flight?.Load();
 				dataGridViewFlights.DataSource = context.Flight.Local.ToBindingList();
 				dataGridViewFlights.AutoSize = true;
 				dataGridViewFlights.AutoGenerateColumns = true;
 				dataGridViewFlights.ColumnHeadersVisible = true;
-			}
 		}
 	}
 }

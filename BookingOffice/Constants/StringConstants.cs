@@ -20,5 +20,6 @@ namespace BookingOffice.Constants
         public const string AddNewFlightButtonName = "Добавить запись";
 		public const string UpdatePage = "Обновить";
 		public const string DeleteFlight = "Удалить";
+		public const string EditMode = "Режим редактирования";
     }
 }
