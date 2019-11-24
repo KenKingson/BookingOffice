@@ -66,7 +66,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridViewFlights;
+        public System.Windows.Forms.DataGridView dataGridViewFlights;
 		private System.Windows.Forms.ContextMenuStrip contextDataGridServiceStrip;
 	}
 }

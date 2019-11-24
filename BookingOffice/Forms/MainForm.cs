@@ -1,4 +1,5 @@
 ﻿using BookingOffice.Constants;
+using BookingOffice.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,5 +33,10 @@ namespace BookingOffice
             listOfFlightsForm.Show();
         }
 
-    }
+		private void findFlightButton_Click(object sender, EventArgs e)
+		{
+			var findTicketsForm = new FindTicketsForm();
+			findTicketsForm.Show();
+		}
+	}
 }

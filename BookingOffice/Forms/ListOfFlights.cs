@@ -30,10 +30,10 @@ namespace BookingOffice
 
 			var createFlightToolStripMenuItem = new ToolStripMenuItem(StringConstants.CreateFlightToolStripMenuItemName);
 			createFlightToolStripMenuItem.Click += CreateFlightToolStripMenuItem_Click;
-			var updatePageMenuItem = new ToolStripMenuItem(StringConstants.UpdatePage);
-			var deleteFlightMenuItem = new ToolStripMenuItem(StringConstants.DeleteFlight);
-			var editMode = new ToolStripMenuItem(StringConstants.EditMode);
-			var saveChanges = new ToolStripMenuItem("Save changes");
+			var updatePageMenuItem = new ToolStripMenuItem(StringConstants.UpdatePageString);
+			var deleteFlightMenuItem = new ToolStripMenuItem(StringConstants.DeleteFlightString);
+			var editMode = new ToolStripMenuItem(StringConstants.EditModeString);
+			var saveChanges = new ToolStripMenuItem(StringConstants.SaveChangesString);
 
 			contextDataGridServiceStrip.Items.AddRange(new[]
 			{
@@ -51,7 +51,19 @@ namespace BookingOffice
 			editMode.Click += EditMode_Click;
 			this.dataGridViewFlights.KeyDown += DataGridViewFlights_KeyDown;
 			this.dataGridViewFlights.DataError += DataGridViewFlights_DataError;
+			this.dataGridViewFlights.UserDeletingRow += DataGridViewFlights_UserDeletingRow;
 			SetCustomNamesOfColumns();
+		}
+
+		private void DataGridViewFlights_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
+		{
+			{
+				DialogResult dr = MessageBox.Show("Удалить запись?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+				if (dr == DialogResult.Cancel)
+				{
+					e.Cancel = true;
+				}
+			}
 		}
 
 		private void SaveChanges_Click(object sender, EventArgs e)
@@ -117,29 +129,34 @@ namespace BookingOffice
 
 		private void DeleteRecords()
 		{
-				if (dataGridViewFlights?.SelectedRows.Count > 0)
+			if (dataGridViewFlights?.SelectedRows.Count > 0)
+			{
+				DialogResult dr = MessageBox.Show("Удалить запись?", "Удаление", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+				if (dr == DialogResult.Cancel)
 				{
-					foreach (var record in dataGridViewFlights?.SelectedRows)
-					{
-						var flight = (record as DataGridViewRow).DataBoundItem as Flight;
-						if (flight != null)
-						{
-							context.Flight.Attach(flight);
-							context.Flight.Remove(flight);
-							context.SaveChanges();
-						}
-					}
-					UpdatePage();
+					return;
 				}
+				foreach (var record in dataGridViewFlights?.SelectedRows)
+				{
+					var flight = (record as DataGridViewRow).DataBoundItem as Flight;
+					if (flight != null)
+					{
+						context.Flight.Attach(flight);
+						context.Flight.Remove(flight);
+						context.SaveChanges();
+					}
+				}
+				UpdatePage();
+			}
 		}
 
 		private void UpdatePage()
 		{
-				context.Flight?.Load();
-				dataGridViewFlights.DataSource = context.Flight.Local.ToBindingList();
-				dataGridViewFlights.AutoSize = true;
-				dataGridViewFlights.AutoGenerateColumns = true;
-				dataGridViewFlights.ColumnHeadersVisible = true;
+			context.Flight?.Load();
+			dataGridViewFlights.DataSource = context.Flight.Local.ToBindingList();
+			dataGridViewFlights.AutoSize = true;
+			dataGridViewFlights.AutoGenerateColumns = true;
+			dataGridViewFlights.ColumnHeadersVisible = true;
 		}
 	}
 }
