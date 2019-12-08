@@ -38,5 +38,11 @@ namespace BookingOffice
 			var findTicketsForm = new FindTicketsForm();
 			findTicketsForm.Show();
 		}
+
+		private void myFlightsButton_Click(object sender, EventArgs e)
+		{
+			var myOrdersForm = new MyOrdersForm();
+			myOrdersForm.Show();
+		}
 	}
 }

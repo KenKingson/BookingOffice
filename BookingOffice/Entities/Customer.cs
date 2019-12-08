@@ -16,8 +16,21 @@ namespace BookingOffice.Entities
 
         public string MiddleName { get; set; }
 
-        public Guid PassportCode { get; set; }
+        public string PassportCode { get; set; }
 
         public int PhoneNumber { get; set; }
+
+		public Customer(string firstName, string secondName,
+			string middleName, string passportCode, int phoneNumber)
+		{
+			Id = Guid.NewGuid();
+			FirstName = firstName;
+			SecondName = secondName;
+			MiddleName = middleName;
+			PassportCode = passportCode;
+			PhoneNumber = phoneNumber;
+		}
+
+		public Customer() { }
     }
 }

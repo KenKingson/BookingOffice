@@ -57,6 +57,7 @@
 			this.myFlightsButton.TabIndex = 1;
 			this.myFlightsButton.Text = "Мои заказы";
 			this.myFlightsButton.UseVisualStyleBackColor = false;
+			this.myFlightsButton.Click += new System.EventHandler(this.myFlightsButton_Click);
 			// 
 			// findFlightButton
 			// 

@@ -14,15 +14,23 @@ namespace BookingOffice.Entities
 
         public Guid CustomerId { get; set; }
 
-        public float Price { get; set; }
+        public int Price { get; set; }
 
         public DateTime DateOfPushcare { get; set; }
 
-        public FlightClass FlightClass { get; set; }
-    }
+        public string FlightClass { get; set; }
+		
+		public Ticket(Guid flightId, Guid customerId, int price)
+		{
+			Id = Guid.NewGuid();
+			FlightId = flightId;
+			CustomerId = customerId;
+			Price = price;
+			DateOfPushcare = DateTime.Now;
+			var classFlight = new string[] { "Первый класс", "Бизнес-класс", "Эконом" };
+			FlightClass = classFlight[(new Random()).Next(0, 2)];
+		}
 
-    public enum FlightClass
-    {
-        FirstClass, BusinessClass, EconomClass
+		public Ticket() { }
     }
 }

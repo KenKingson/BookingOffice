@@ -1,5 +1,6 @@
 ﻿using BookingOffice.Constants;
 using BookingOffice.Entities;
+using BookingOffice.Forms;
 using BookingOffice.Utils;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace BookingOffice
 		private BindingSource bindingSource = new BindingSource();
 		private bool isEditModeEnabled = false;
 		private Context context;
-
+		public static Flight flight;
 		public ListOfFlights()
 		{
 			InitializeComponent();
@@ -34,14 +35,16 @@ namespace BookingOffice
 			var deleteFlightMenuItem = new ToolStripMenuItem(StringConstants.DeleteFlightString);
 			var editMode = new ToolStripMenuItem(StringConstants.EditModeString);
 			var saveChanges = new ToolStripMenuItem(StringConstants.SaveChangesString);
-
+			var buyTicketbtn = new ToolStripMenuItem("Купить билет");
+				
 			contextDataGridServiceStrip.Items.AddRange(new[]
 			{
 				createFlightToolStripMenuItem,
 				updatePageMenuItem,
 				deleteFlightMenuItem,
 				editMode,
-				saveChanges
+				saveChanges,
+				buyTicketbtn
 			});
 
 			dataGridViewFlights.ContextMenuStrip = contextDataGridServiceStrip;
@@ -49,11 +52,24 @@ namespace BookingOffice
 			updatePageMenuItem.Click += UpdatePage_Click;
 			deleteFlightMenuItem.Click += DeleteFlightMenuItem_Click;
 			editMode.Click += EditMode_Click;
+			buyTicketbtn.Click += BuyTicketbtn_Click;
 			this.dataGridViewFlights.KeyDown += DataGridViewFlights_KeyDown;
 			this.dataGridViewFlights.DataError += DataGridViewFlights_DataError;
 			this.dataGridViewFlights.UserDeletingRow += DataGridViewFlights_UserDeletingRow;
 			SetCustomNamesOfColumns();
 		}
+
+		private void BuyTicketbtn_Click(object sender, EventArgs e)
+		{
+			if (dataGridViewFlights?.SelectedRows.Count != 0)
+			{
+				var selectedFlight = dataGridViewFlights?.SelectedRows[0];
+				flight = (selectedFlight as DataGridViewRow).DataBoundItem as Flight;
+				var buyTicketForm = new BuyTicketForm();
+				buyTicketForm.Show();
+			}
+		}
+		
 
 		private void DataGridViewFlights_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
 		{

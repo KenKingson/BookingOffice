@@ -106,6 +106,12 @@
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\Flight.cs" />
     <Compile Include="Entities\Ticket.cs" />
+    <Compile Include="Forms\BuyTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\BuyTicketForm.Designer.cs">
+      <DependentUpon>BuyTicketForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FindTicketsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,12 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MyOrdersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MyOrdersForm.Designer.cs">
+      <DependentUpon>MyOrdersForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\201909292017057_Initial.cs" />
     <Compile Include="Migrations\201909292017057_Initial.Designer.cs">
       <DependentUpon>201909292017057_Initial.cs</DependentUpon>
@@ -136,12 +148,27 @@
     <Compile Include="Migrations\201910061822292_addTimeMigration.Designer.cs">
       <DependentUpon>201910061822292_addTimeMigration.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201912081125354_CustomerChanged.cs" />
+    <Compile Include="Migrations\201912081125354_CustomerChanged.Designer.cs">
+      <DependentUpon>201912081125354_CustomerChanged.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912081155462_TicketChanged1.cs" />
+    <Compile Include="Migrations\201912081155462_TicketChanged1.Designer.cs">
+      <DependentUpon>201912081155462_TicketChanged1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201912081158572_TicketChanged2.cs" />
+    <Compile Include="Migrations\201912081158572_TicketChanged2.Designer.cs">
+      <DependentUpon>201912081158572_TicketChanged2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\Context.cs" />
     <EmbeddedResource Include="Forms\AddFlightForm.resx">
       <DependentUpon>AddFlightForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\BuyTicketForm.resx">
+      <DependentUpon>BuyTicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FindTicketsForm.resx">
       <DependentUpon>FindTicketsForm.cs</DependentUpon>
@@ -152,6 +179,9 @@
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MyOrdersForm.resx">
+      <DependentUpon>MyOrdersForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201909292017057_Initial.resx">
       <DependentUpon>201909292017057_Initial.cs</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +190,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910061822292_addTimeMigration.resx">
       <DependentUpon>201910061822292_addTimeMigration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912081125354_CustomerChanged.resx">
+      <DependentUpon>201912081125354_CustomerChanged.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912081155462_TicketChanged1.resx">
+      <DependentUpon>201912081155462_TicketChanged1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201912081158572_TicketChanged2.resx">
+      <DependentUpon>201912081158572_TicketChanged2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

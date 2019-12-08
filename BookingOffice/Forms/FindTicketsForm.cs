@@ -30,26 +30,31 @@ namespace BookingOffice.Forms
 			for (int i = 0; i < grid.RowCount; i++)
 			{
 				grid.Rows[i].Selected = false;
-				if (grid.Rows[i].Cells[1].Value != null && grid.Rows[i].Cells[2].Value != null)
+				if (grid.Rows[i].Cells[1].Value != null && grid.Rows[i].Cells[2].Value != null && !string.IsNullOrEmpty(from) && !string.IsNullOrEmpty(to))
 				{
 					if (grid.Rows[i].Cells[1].Value.ToString().Contains(from) && grid.Rows[i].Cells[2].Value.ToString().Contains(to))
 					{
 						grid.Rows[i].Selected = true;
-						break;
+						continue;
 					}
-
-
 				}
-
+				else if (grid.Rows[i].Cells[1].Value != null && !string.IsNullOrEmpty(from))
+				{
+					if (grid.Rows[i].Cells[1].Value.ToString().Contains(from))
+					{
+						grid.Rows[i].Selected = true;
+						continue;
+					}
+				}
+				else if (grid.Rows[i].Cells[2].Value != null && !string.IsNullOrEmpty(to))
+				{
+					if (grid.Rows[i].Cells[2].Value.ToString().Contains(from))
+					{
+						grid.Rows[i].Selected = true;
+						continue;
+					}
+				}
 			}
-
-
-
-		}
-
-		private void findData()
-		{
-
 		}
 	}
 }
